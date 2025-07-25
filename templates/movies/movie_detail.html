@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>{{ movie.title }}</h1>
+    
+    <p><strong>Жанр:</strong> {{ movie.genre.name }}</p>
+    <p><strong>Описание:</strong> {{ movie.description }}</p>
+    <p><strong>Дата релиза:</strong> {{ movie.release_date }}</p>
+    <p><strong>Длительность (мин):</strong> {{ movie.duration_minutes }}</p>
+    
+    {% if movie.image %}
+      <img src="{{ movie.image.url }}" alt="{{ movie.title }}" style="max-width:300px;">
+    {% endif %}
+    
+    <a href="{% url 'movie_list' %}">Вернуться к списку фильмов</a>
+</body>
+</html>

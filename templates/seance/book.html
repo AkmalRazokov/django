@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Бронирование</title>
+</head>
+<body>
+    <h1>Бронирование билета</h1>
+
+    <p>Фильм: {{ seance.movie.title }}</p>
+    <p>Дата: {{ seance.date }}</p>
+    <p>Время: {{ seance.time }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="seat">Место:</label>
+        <input type="text" name="seat" id="seat" required>
+        <br><br>
+        <button type="submit">Забронировать</button>
+    </form>
+
+    <a href="{% url 'movie_seances' seance.movie.id %}">Назад</a>
+</body>
+</html>

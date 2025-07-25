@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Фильмы</h1>
+    
+    <ul>
+      {% for movie in movies %}
+        <li>
+          <a href="{% url 'movie_detail' movie.pk %}">{{ movie.title }}</a>
+          - {{ movie.genre.name }}
+        </li>
+      {% empty %}
+        <li>Нет фильмов</li>
+      {% endfor %}
+    </ul>
+    
+    <a href="{% url 'movie_create' %}">Добавить фильм</a>
+</body>
+</html>

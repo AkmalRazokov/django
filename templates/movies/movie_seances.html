@@ -1,0 +1,27 @@
+<!-- templates/movies/movie_seances.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Сеансы: {{ movie.title }}</title>
+</head>
+<body>
+    <h1>Сеансы для фильма: {{ movie.title }}</h1>
+
+    {% if seances %}
+        <ul>
+            {% for seance in seances %}
+                <li>
+                    Дата: {{ seance.date }} |
+                    Время: {{ seance.time }} |
+                    <a href="{% url 'seance_book' seance.id %}">Забронировать</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Нет сеансов для этого фильма.</p>
+    {% endif %}
+
+    <a href="{% url 'movie_list' %}">Назад к списку фильмов</a>
+</body>
+</html>

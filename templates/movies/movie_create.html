@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Добавить фильм</h1>
+    
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+      <label>Название:</label><br>
+      <input type="text" name="title" required><br><br>
+      
+      <label>Описание:</label><br>
+      <textarea name="description"></textarea><br><br>
+      
+      <label>Дата релиза:</label><br>
+      <input type="date" name="release_date"><br><br>
+      
+      <label>Длительность (минуты):</label><br>
+      <input type="number" name="duration_minutes"><br><br>
+      
+      <label>Жанр:</label><br>
+      <select name="genre">
+        {% for genre in genres %}
+          <option value="{{ genre.id }}">{{ genre.name }}</option>
+        {% endfor %}
+      </select><br><br>
+      
+      <label>Изображение:</label><br>
+      <input type="file" name="image"><br><br>
+      
+      <button type="submit">Сохранить</button>
+    </form>
+    
+    <a href="{% url 'movie_list' %}">Отмена</a>
+</body>
+</html>
